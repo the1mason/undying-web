@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UndyingWorld.Data\UndyingWorld.Data.csproj" />
+    <ProjectReference Include="..\UndyingWorld.Web.Serivce\UndyingWorld.Web.Serivces.csproj" />
+  </ItemGroup>
+
+</Project>
