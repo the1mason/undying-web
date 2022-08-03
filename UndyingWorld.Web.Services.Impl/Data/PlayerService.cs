@@ -12,15 +12,15 @@ namespace UndyingWorld.Web.Services.Impl.Data
 {
     public class PlayerService : IPlayerService
     {
-        private IDbContextFactory<MainContext> _myDbContextFactory;
+        private IDbContextFactory<MainContext> _dbContextFactory;
         public PlayerService(IDbContextFactory<MainContext> myDbContextFactory)
         {
-            _myDbContextFactory = myDbContextFactory;
+            _dbContextFactory = myDbContextFactory;
         }
         
         public Authme GetUser(string username)
         {
-            using (var context = _myDbContextFactory.CreateDbContext())
+            using (var context = _dbContextFactory.CreateDbContext())
             {
                 var user = context.Authmes.FirstOrDefault(x => x.Username == username);
                 return user;
