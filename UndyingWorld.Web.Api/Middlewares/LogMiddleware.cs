@@ -1,10 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-
-namespace UndyingWorld.Web.Api.Middlewares;
+﻿namespace UndyingWorld.Web.Api.Middlewares;
 public class LogMiddleware
 {
     private readonly RequestDelegate _next;

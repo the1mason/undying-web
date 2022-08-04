@@ -1,12 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UndyingWorld.Data;
-using UndyingWorld.Web.Services;
 
 namespace UndyingWorld.Web.Services.Impl.Data
 {

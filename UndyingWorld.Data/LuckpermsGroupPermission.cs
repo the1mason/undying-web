@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace UndyingWorld.Data
+﻿namespace UndyingWorld.Data
 {
     public partial class LuckpermsGroupPermission
     {
