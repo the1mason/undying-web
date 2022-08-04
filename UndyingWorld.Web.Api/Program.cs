@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using UndyingWorld.Web.Api.Jwt;
+using UndyingWorld.Web.Api.Middlewares;
 using UndyingWorld.Web.Services.Impl.Data;
 
 namespace UndyingWorld.Web.Api;
@@ -86,6 +87,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseLogMiddleware();
 
         app.UseAuthentication();
 

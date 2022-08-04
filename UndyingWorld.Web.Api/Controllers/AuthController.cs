@@ -31,11 +31,5 @@ namespace UndyingWorld.Web.Api.Controllers
 
             return Ok(token);
         }
-
-        [HttpGet("GetSecret")]
-        public IActionResult GetSecret()
-        {
-            return Ok("Secret");
-        }
     }
 }
