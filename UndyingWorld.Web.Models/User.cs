@@ -1,4 +1,4 @@
-﻿namespace UndyingWorld.Web.Api.Models
+﻿namespace UndyingWorld.Web.Models
 {
     public class User
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UndyingWorld.Web.Api.Jwt;
-using UndyingWorld.Web.Api.Models;
+using UndyingWorld.Web.Models;
 
 namespace UndyingWorld.Web.Api.Controllers
 {

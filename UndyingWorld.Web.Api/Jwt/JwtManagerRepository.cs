@@ -2,7 +2,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using UndyingWorld.Web.Api.Models;
+using UndyingWorld.Web.Models;
+using UndyingWorld.Web.Services.Data;
 using UndyingWorld.Web.Services.Impl.Data;
 
 namespace UndyingWorld.Web.Api.Jwt

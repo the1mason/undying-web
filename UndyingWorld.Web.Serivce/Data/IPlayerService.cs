@@ -1,10 +1,11 @@
 ﻿using UndyingWorld.Data;
+using UndyingWorld.Web.Models;
 
-namespace UndyingWorld.Web.Services.Impl.Data
+namespace UndyingWorld.Web.Services.Data
 {
     public interface IPlayerService
     {
-        public Authme GetUser(string username);
+        public Player GetPlayer(string username);
 
         public bool IsUser(string username, string password);
     }
