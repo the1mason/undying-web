@@ -12,7 +12,7 @@ namespace UndyingWorld.Web.Services.Impl.Data
         {
             _dbContextFactory = myDbContextFactory;
         }
-        
+
         public bool IsPlayer(string username)
         {
             using (var context = _dbContextFactory.CreateDbContext())
@@ -21,11 +21,62 @@ namespace UndyingWorld.Web.Services.Impl.Data
             }
         }
 
+        /// <summary>
+        /// Checks permission only in Luckperms
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="permission"></param>
+        /// <returns></returns>
+        public bool HasCabinetPermission(string username, string permission)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                try
+                {
+                    return context.LuckpermsUserPermissions.Any(x =>
+                        x.Value == true &&
+                        x.Permission == permission &&
+                        x.Uuid == context.LuckpermsPlayers.Where(x => x.Username == username).Select(x => x.Uuid).First());
+                }
+                catch (InvalidOperationException)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public List<SearchPlayer> SearchPlayers(string query, int count, int offset)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                if (String.IsNullOrWhiteSpace(query))
+                   return context.LuckpermsPlayers.Select(
+                        x => new SearchPlayer
+                        {
+                            PrimaryGroup = x.PrimaryGroup,
+                            Nickname = x.Username
+                        })
+                        .Skip(offset)
+                        .Take(count)
+                        .ToList();
+                else
+                    return context.LuckpermsPlayers.Where(x => x.Username.Contains(query)).Select(
+                        x => new SearchPlayer
+                        {
+                            PrimaryGroup = x.PrimaryGroup,
+                            Nickname = x.Username
+                        })
+                        .Skip(offset)
+                        .Take(count)
+                        .ToList();
+            }
+        }
+
         public Player GetPlayer(string username)
         {
             if (!IsPlayer(username))
                 return null;
-            
+
             using (var context = _dbContextFactory.CreateDbContext())
             {
                 var authme = context.Authmes.Where(x => x.Realname == username).Select(x => new { x.Realname, x.IsLogged, x.Lastlogin, x.Regdate }).FirstOrDefault();
@@ -40,8 +91,8 @@ namespace UndyingWorld.Web.Services.Impl.Data
                     RegDate = Helpers.DateConverter.NormalizeAuthmeDate(authme.Regdate),
                     PrimaryGroup = primaryGroup ?? "default"
                 };
-                
-                if(gamepoints != null)
+
+                if (gamepoints != null)
                 {
                     player.Balance = gamepoints.HasValue ? gamepoints.Value : 0;
                 }
@@ -65,16 +116,6 @@ namespace UndyingWorld.Web.Services.Impl.Data
 
                 return false;
             }
-        }
-
-        public Authme GetUser()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsUser()
-        {
-            throw new NotImplementedException();
         }
     }
 }
