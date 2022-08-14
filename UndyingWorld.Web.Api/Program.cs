@@ -17,6 +17,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Configuration.AddYamlFile("appsettings.yml", optional: true);
+
         builder.Services.AddAuthentication(x =>
         {
             x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -71,7 +73,7 @@ public class Program
         
         builder.Services.AddSingleton<IPlayerService, PlayerService>();
 
-        var connection = builder.Configuration.GetConnectionString("ServerData");
+        var connection = builder.Configuration.GetConnectionString("MySQL");
 
         builder.Services.AddDbContextFactory<Data.MainContext>(o => o.UseMySql(connection, ServerVersion.Parse("8.0.29-mysql")));
 
