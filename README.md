@@ -11,7 +11,7 @@ Minecraft server with following plugins installed:
 
 ## Configuration
 
-Change the following lines in appsettings.json or create a new appsettings.yml file to overriding it
+Change the following lines in appsettings.json or create a new appsettings.yml file overriding it
 
 ```json
 "JWT": {
