@@ -28,3 +28,19 @@ Change the following lines in appsettings.json or create a new appsettings.yml f
     "Rcon": "address:port:password"
   }
 ```
+
+Yaml example:
+
+```yaml
+  JWT:
+    Key: "817WPyDF3t8VhJzbn58puu8tOSurDIul3Ei8YF3g0e1YyCs7E0bZ4BHLQh93JvzkhFPdCa2IgtypQnVd0CtfH1lZOWq4MiqervMN"
+    Issuer: "https://superserver.org"
+    Audience: "superserver.org"
+    ValidateIssuer: true
+    ValidateAudience: true
+    ValidateLifetime: true
+    ValidateIssuerSigningKey: true
+  ConnectionStrings: 
+    MySQL: "server=db.example.com;database=minecraft;uid=username;pwd=secret420!"
+    Rcon: "mc.example.com:25575:superSecret1337!"
+```
