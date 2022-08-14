@@ -29,10 +29,10 @@ public class Program
             o.SaveToken = true;
             o.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
+                ValidateIssuer = bool.Parse(builder.Configuration["JWT:ValidateIssuer"]),
+                ValidateAudience = bool.Parse(builder.Configuration["JWT:ValidateAudience"]),
+                ValidateLifetime = bool.Parse(builder.Configuration["JWT:ValidateLifetime"]),
+                ValidateIssuerSigningKey = bool.Parse(builder.Configuration["JWT:ValidateIssuerSigningKey"]),
                 ValidIssuer = builder.Configuration["JWT:Issuer"],
                 ValidAudience = builder.Configuration["JWT:Audience"],
                 IssuerSigningKey = new SymmetricSecurityKey(Key)
