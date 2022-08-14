@@ -7,8 +7,7 @@ Minecraft server with following plugins installed:
 - GamePoints [1.3.1]
 - LuckPerms [5.4.41]
 - AdvancedBan [2.3.0]
-
-Rcon access to the server
+- Rcon access to the server
 
 ## Configuration
 
