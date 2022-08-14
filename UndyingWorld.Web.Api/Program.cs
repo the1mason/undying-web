@@ -19,6 +19,8 @@ public class Program
 
         builder.Configuration.AddYamlFile("appsettings.yml", optional: true);
 
+        builder.Configuration.AddEnvironmentVariables();
+
         builder.Services.AddAuthentication(x =>
         {
             x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
