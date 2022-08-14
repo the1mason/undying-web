@@ -20,14 +20,25 @@ namespace UndyingWorld.Web.Services.Impl.Data
                 return context.Authmes.Any(x => x.Realname == username);
             }
         }
+        public bool IsUser(string username, string password)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                var user = context.Authmes.FirstOrDefault(x => x.Realname == username);
 
-        /// <summary>
-        /// Checks permission only in Luckperms
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="permission"></param>
-        /// <returns></returns>
-        public bool HasCabinetPermission(string username, string permission)
+                if (user == null)
+                    return false;
+
+                string[] passwordSplit = user.Password.Split('$');
+                string hash = Helpers.HashHelper.GetHash(Helpers.HashHelper.GetHash(password) + passwordSplit[2]);
+                if (hash == passwordSplit[3])
+                    return true;
+
+                return false;
+            }
+        }
+
+        public bool HasUserPermission(string username, string permission)
         {
             using (var context = _dbContextFactory.CreateDbContext())
             {
@@ -36,6 +47,7 @@ namespace UndyingWorld.Web.Services.Impl.Data
                     return context.LuckpermsUserPermissions.Any(x =>
                         x.Value == true &&
                         x.Permission == permission &&
+                        x.Expiry >= Helpers.DateConverter.ConvertToUnix(DateTime.Now) &&
                         x.Uuid == context.LuckpermsPlayers.Where(x => x.Username == username).Select(x => x.Uuid).First());
                 }
                 catch (InvalidOperationException)
@@ -100,22 +112,5 @@ namespace UndyingWorld.Web.Services.Impl.Data
             }
         }
 
-        public bool IsUser(string username, string password)
-        {
-            using (var context = _dbContextFactory.CreateDbContext())
-            {
-                var user = context.Authmes.FirstOrDefault(x => x.Realname == username);
-
-                if (user == null)
-                    return false;
-
-                string[] passwordSplit = user.Password.Split('$');
-                string hash = Helpers.HashHelper.GetHash(Helpers.HashHelper.GetHash(password) + passwordSplit[2]);
-                if (hash == passwordSplit[3])
-                    return true;
-
-                return false;
-            }
-        }
     }
 }

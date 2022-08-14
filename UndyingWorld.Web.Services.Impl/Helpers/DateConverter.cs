@@ -12,23 +12,30 @@ namespace UndyingWorld.Web.Services.Impl.Helpers
         public static DateTime NormalizeAuthmeDate(long dateDenormalized)
         {
             if (dateDenormalized < 20200000000000)
-            {
-                DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-                string s = dateDenormalized.ToString();
-                double d = double.Parse(s);
-                return dt.AddMilliseconds(d);
-            }
+                return ConvertFromUnix(dateDenormalized);
             
-            return ConvertFromDateLong(20200000000000);
+            return ConvertFromDateString(dateDenormalized);
         }
 
-        private static DateTime ConvertFromDateLong(long dateLong)
+        private static DateTime ConvertFromDateString(long dateLong)
         {
             string dateString = dateLong.ToString();
 
             CultureInfo provider = CultureInfo.InvariantCulture;
             
             return DateTime.ParseExact(dateString, "yyyyMMddHHmmss", provider);
+        }
+
+        public static DateTime ConvertFromUnix(long dateLong)
+        {
+            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            return dt.AddMilliseconds(dateLong);
+        }
+
+        public static long ConvertToUnix(DateTime dateTime)
+        {
+            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            return (long)(dateTime - dt).TotalMilliseconds;
         }
     }
 }

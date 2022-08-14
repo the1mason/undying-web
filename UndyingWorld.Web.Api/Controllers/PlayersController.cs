@@ -69,14 +69,13 @@ namespace UndyingWorld.Web.Api.Controllers
             return player;
         }
 
-        [HttpGet("{nickname}/isPlayer")]
+        [HttpGet("{nickname}/is-player")]
         public ActionResult<bool> IsPlayer(string nickname)
         {
             if (string.IsNullOrWhiteSpace(nickname))
                 return BadRequest();
 
             return _playerService.IsPlayer(nickname);
-
         }
     }
 }

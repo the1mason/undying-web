@@ -32,7 +32,7 @@ namespace UndyingWorld.Web.Api.Jwt
 				{
 					new Claim(ClaimTypes.Name, user.Nickname)
 				}),
-				Expires = DateTime.UtcNow.AddMinutes(60),
+				Expires = DateTime.UtcNow.AddMinutes(120),
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
 			};
 			var token = tokenHandler.CreateToken(tokenDescriptor);

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -13,15 +13,9 @@ namespace UndyingWorld.Web.Api;
 public class Program
 {
 
-    public static PlayerService PlayerService;
-    
     public static void Main(string[] args)
     {
-        
         var builder = WebApplication.CreateBuilder(args);
-
-        var connection = builder.Configuration.GetConnectionString("ServerData");
-
 
         builder.Services.AddAuthentication(x =>
         {
@@ -76,6 +70,8 @@ public class Program
         builder.Services.AddSingleton<IJwtManagerRepository, JwtManagerRepository>();
         
         builder.Services.AddSingleton<IPlayerService, PlayerService>();
+
+        var connection = builder.Configuration.GetConnectionString("ServerData");
 
         builder.Services.AddDbContextFactory<Data.MainContext>(o => o.UseMySql(connection, ServerVersion.Parse("8.0.29-mysql")));
 
