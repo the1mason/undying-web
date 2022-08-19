@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UndyingWorld.Data\UndyingWorld.Data.csproj" />
     <ProjectReference Include="..\UndyingWorld.Web.Models\UndyingWorld.Web.Models.csproj" />
-    <ProjectReference Include="..\UndyingWorld.Web.Serivce\UndyingWorld.Web.Serivces.csproj" />
+    <ProjectReference Include="..\UndyingWorld.Web.Service\UndyingWorld.Web.Serivces.csproj" />
   </ItemGroup>
 
 </Project>
