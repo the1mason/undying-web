@@ -1,5 +1,4 @@
-﻿using UndyingWorld.Data;
-using UndyingWorld.Web.Models;
+﻿using UndyingWorld.Web.Models;
 
 namespace UndyingWorld.Web.Services.Data
 {

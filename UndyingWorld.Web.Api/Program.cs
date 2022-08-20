@@ -1,4 +1,4 @@
- using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -7,6 +7,8 @@ using UndyingWorld.Web.Api.Jwt;
 using UndyingWorld.Web.Api.Middlewares;
 using UndyingWorld.Web.Services.Data;
 using UndyingWorld.Web.Services.Impl.Data;
+using UndyingWorld.GameIntegration;
+using UndyingWorld.Web.Services.Impl;
 
 namespace UndyingWorld.Web.Api;
 
@@ -21,6 +23,10 @@ public class Program
 
         builder.Configuration.AddEnvironmentVariables();
 
+        ApiEndpoint endpoint = new(builder.Configuration["GameIntegration:Address"], builder.Configuration["GameIntegration:Token"]);
+        IntegrationService.PteroService = new(endpoint);
+        IntegrationService.ServService = new(IntegrationService.PteroService);
+        
         builder.Services.AddAuthentication(x =>
         {
             x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

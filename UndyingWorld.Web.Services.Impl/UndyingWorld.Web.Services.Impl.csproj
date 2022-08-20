@@ -9,7 +9,11 @@
   <ItemGroup>
     <ProjectReference Include="..\UndyingWorld.Data\UndyingWorld.Data.csproj" />
     <ProjectReference Include="..\UndyingWorld.Web.Models\UndyingWorld.Web.Models.csproj" />
-    <ProjectReference Include="..\UndyingWorld.Web.Service\UndyingWorld.Web.Serivces.csproj" />
+    <ProjectReference Include="..\UndyingWorld.Web.Services\UndyingWorld.Web.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="UndyingWorld.GameIntegration" Version="1.1.0" />
   </ItemGroup>
 
 </Project>
