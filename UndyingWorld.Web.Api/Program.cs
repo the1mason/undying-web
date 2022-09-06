@@ -94,11 +94,23 @@ public class Program
 
         var app = builder.Build();
 
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        app.UseSwagger();
+        app.UseSwaggerUI();
+
+        app.UseHttpsRedirection();
+        
+        app.UseRouting();
+
+        app.UseLogMiddleware();
+
+        app.UseAuthentication();
+
+        app.UseAuthorization();
+
+
+        app.UseEndpoints(endpoints => {
+            endpoints.MapControllers();
+        });
 
         app.UseStaticFiles();
 
@@ -116,16 +128,6 @@ public class Program
                 spa.UseAngularCliServer(npmScript: "start");
             }
         });
-
-        app.UseHttpsRedirection();
-
-        app.UseLogMiddleware();
-
-        app.UseAuthentication();
-
-        app.UseAuthorization();
-
-        app.MapControllers();
 
         app.Run();
     }

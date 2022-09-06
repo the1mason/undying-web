@@ -42,13 +42,13 @@ namespace UndyingWorld.Web.Services.Impl.Data
         {
             using (var context = _dbContextFactory.CreateDbContext())
             {
-                try
-                {
-                    return context.LuckpermsUserPermissions.Any(x =>
-                        x.Value == true &&
-                        x.Permission == permission &&
-                        x.Expiry >= Helpers.DateConverter.ConvertToUnix(DateTime.Now) &&
-                        x.Uuid == context.LuckpermsPlayers.Where(x => x.Username == username).Select(x => x.Uuid).First());
+                try { 
+                var date = Helpers.DateConverter.ConvertToUnix(DateTime.Now);
+                return context.LuckpermsUserPermissions.Any(x =>
+                    x.Value == true &&
+                    x.Permission == permission &&
+                    ( x.Expiry >= date || x.Expiry == 0)  &&
+                    x.Uuid == context.LuckpermsPlayers.Where(x => x.Username.ToLower() == username.ToLower()).Select(x => x.Uuid).First());
                 }
                 catch (InvalidOperationException)
                 {
@@ -62,15 +62,15 @@ namespace UndyingWorld.Web.Services.Impl.Data
             using (var context = _dbContextFactory.CreateDbContext())
             {
                 if (String.IsNullOrWhiteSpace(query))
-                   return context.LuckpermsPlayers.Select(
-                        x => new SearchPlayer
-                        {
-                            PrimaryGroup = x.PrimaryGroup,
-                            Nickname = x.Username
-                        })
-                        .Skip(offset)
-                        .Take(count)
-                        .ToList();
+                    return context.LuckpermsPlayers.Select(
+                         x => new SearchPlayer
+                         {
+                             PrimaryGroup = x.PrimaryGroup,
+                             Nickname = x.Username
+                         })
+                         .Skip(offset)
+                         .Take(count)
+                         .ToList();
                 else
                     return context.LuckpermsPlayers.Where(x => x.Username.Contains(query)).Select(
                         x => new SearchPlayer

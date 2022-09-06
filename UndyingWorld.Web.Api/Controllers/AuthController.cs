@@ -25,7 +25,7 @@ namespace UndyingWorld.Web.Api.Controllers
         public ActionResult<JwtToken> Post(User user)
         {
             if (!_playerService.HasUserPermission(user.Nickname, Services.Impl.Constants.CabinetPermissions.CabinetUse))
-                return StatusCode(403, new ErrorMessage($"Недостаточно прав на использование ЛК. Используйте /cabinet в игре для получения доступа."));
+                return StatusCode(403, new ErrorMessage($"Личный кабинет выключен для данного аккаунта. Используйте /cabinet в игре для включения ЛК!"));
 
             var token = _jwtManager.Authenticate(user);
 
