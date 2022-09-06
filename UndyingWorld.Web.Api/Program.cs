@@ -9,6 +9,7 @@ using UndyingWorld.Web.Services.Data;
 using UndyingWorld.Web.Services.Impl.Data;
 using UndyingWorld.GameIntegration;
 using UndyingWorld.Web.Services.Impl;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 namespace UndyingWorld.Web.Api;
 
@@ -26,7 +27,7 @@ public class Program
         ApiEndpoint endpoint = new(builder.Configuration["GameIntegration:Address"], builder.Configuration["GameIntegration:Token"]);
         IntegrationService.PteroService = new(endpoint);
         IntegrationService.ServService = new(IntegrationService.PteroService);
-        
+
         builder.Services.AddAuthentication(x =>
         {
             x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -77,8 +78,14 @@ public class Program
             });
         });
 
+        builder.Services.AddSpaStaticFiles(configuration =>
+        {
+            configuration.RootPath = "..//UndyingWorld.Web.Client/dist";
+        });
+
+
         builder.Services.AddSingleton<IJwtManagerRepository, JwtManagerRepository>();
-        
+
         builder.Services.AddSingleton<IPlayerService, PlayerService>();
 
         var connection = builder.Configuration.GetConnectionString("MySQL");
@@ -92,6 +99,23 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseStaticFiles();
+
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseSpaStaticFiles();
+        }
+
+        app.UseSpa(spa =>
+        {
+            spa.Options.SourcePath = "../UndyingWorld.Web.Client";
+
+            if (app.Environment.IsDevelopment())
+            {
+                spa.UseAngularCliServer(npmScript: "start");
+            }
+        });
 
         app.UseHttpsRedirection();
 

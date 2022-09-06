@@ -1,0 +1,300 @@
+/* Variables */
+
+:root {
+    --body-bg: #33404d;
+    --scrollbar-bg: #26323d;
+    --scrollbar-thumb-bg: #26303b;
+    --main-font: 'Roboto';
+    --text-main: #ffffff;
+    --om-link: var(--text-main);
+    --om-link-hover-opacity: 0.7;
+    --om-link-hover: var(--text-main);
+    --om-nav-toggler: var(--text-main);
+    --om-nav-toggler-hover: var(--text-main);
+    --om-nav-toggler-hover-bg: #00000013;
+    --om-footer-background: #ffffff09;
+    --om-footer-link: #ffffffa0;
+    --om-footer-link-hover: #ffffffff;
+    --om-footer-p: #ffffff;
+    --om-accent: #6fb5fc;
+    --om-accent-dark: #5ba4ee;
+    --om-accent-semi-transparent-l: #6fb5fc18;
+    --om-accent-semi-transparent-m: #6fb5fc2a;
+    --om-accent-hover: #4b96e0;
+    --om-card-bg: #ffffff05;
+    --om-card-bord: #ffffff0b;
+}
+
+/* General redesigns */
+
+::selection {
+    color: #fff;
+    background: var(--om-accent);
+}
+
+body {
+    background-color: var(--body-bg);
+    font-family: 'Roboto';
+}
+
+.fs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 73vh;
+}
+
+a {
+    color: var(--om-accent);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--om-accent-hover);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+i,
+u,
+ul,
+em {
+    color: var(--text-main);
+    margin: 0;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 1rem;
+    background-color: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0.35rem;
+    background-color: var(--scrollbar-thumb-bg);
+}
+
+/* Om navbar menu */
+
+#om-navbar {
+    padding: 0.3rem 0.4rem;
+    font-family: var(--main-font);
+    margin-bottom: 1.2rem;
+}
+
+#om-navbar .navbar-brand,
+#om-navbar .navbar-brand:hover,
+#om-navbar .navbar-brand:focus {
+    color: var(--text-main);
+    font-weight: 900;
+    font-size: 1.3rem;
+}
+
+#om-navbar .nav-link {
+    color: var(--om-link);
+    font-weight: thin;
+    transition: 0.1s;
+    text-align: right;
+    font-size: 1.1rem;
+}
+
+#om-navbar .nav-link:hover {
+    color: var(--om-link-hover);
+    opacity: var(--om-link-hover-opacity);
+}
+
+/* Toggler */
+
+#om-navbar .navbar-toggler {
+    border: none;
+    padding: 0;
+    color: var(--om-nav-toggler);
+    box-shadow: none;
+    padding: 0.3rem 0.35rem 0.3rem 0.33rem;
+    transition: 0.2s;
+    border-radius: 7px;
+    font-size: 22px;
+}
+
+#om-navbar .navbar-toggler:hover {
+    background-color: var(--om-nav-toggler-hover-bg);
+}
+
+/* Footer */
+
+#om-footer .footer-spacing {
+    background-color: var(--body-bg);
+    border-radius: 0 0 1.5rem 1.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+#om-footer {
+    background: var(--om-footer-background);
+    padding-bottom: 17px;
+}
+
+#om-footer p {
+    color: var(--om-footer-p);
+    padding: 0 0.5rem;
+    white-space: wrap;
+    font-size: 1.2rem;
+    margin-bottom: 3px;
+    line-height: 1.5rem;
+}
+
+#om-footer a {
+    color: var(--om-footer-link);
+    padding: 0 0.8rem;
+}
+
+#om-footer a:hover {
+    color: var(--om-footer-link-hover);
+    padding: 0 0.8rem;
+}
+
+#om-footer .footer-col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Buttons */
+
+.om-btn {
+    border-radius: 0.45rem;
+}
+
+.om-btn.fw {
+    width: 100%;
+}
+
+.om-btn:focus {
+    box-shadow: none;
+}
+
+.om-btn.second {
+    color: var(--om-accent-dark);
+    font-weight: 600;
+    background-color: var(--om-accent-semi-transparent-l);
+    transition: 0.1s;
+}
+
+.om-btn.second:hover {
+    background-color: var(--om-accent-semi-transparent-m);
+}
+
+/* Form */
+
+.om-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.om-form-container div,
+.om-form-container p {
+    min-width: 280px;
+}
+
+.om-form .form-control {
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 0.45rem;
+    color: var(--text-main);
+    background-color: var(--om-card-bg);
+    transition: 0.2s;
+}
+
+.om-form .form-control:hover {
+    background: var(--om-accent-semi-transparent-l);
+}
+
+.om-form .form-control:focus {
+    box-shadow: 0 0 0 1px var(--om-accent);
+}
+
+/* Card */
+
+.om-card {
+    background-color: var(--om-card-bg);
+    border-radius: 0.9rem;
+    border: solid 1px var(--om-card-bord);
+}
+
+.om-card-container.om-side {
+    padding: 0 1.1rem;
+}
+
+.om-card-container.om-top {
+    padding-top: 1rem;
+}
+
+.om-card-container.om-bottom {
+    padding-bottom: 1rem;
+}
+
+/*
+  BYING FORM (TEMP STYLES)  
+*/
+
+#om-body .alert {
+    border-radius: 0.55rem;
+}
+
+#trademc-buyform {
+    font-family: 'Roboto';
+}
+
+#trademc-buyform .trademc-buyform-title {
+    color: #fff;
+}
+
+#trademc-buyform .trademc-buyform-input,
+#trademc-buyform .trademc-buyform-select select {
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 0.45rem;
+    color: var(--text-main);
+    background-color: var(--om-card-bg);
+    transition: 0.2s;
+}
+
+#trademc-buyform .trademc-buyform-input:hover,
+#trademc-buyform .trademc-buyform-select select:hover {
+    background: var(--om-accent-semi-transparent-l);
+}
+
+#trademc-buyform .trademc-buyform-input:focus,
+#trademc-buyform .trademc-buyform-select select:focus {
+    box-shadow: 0 0 0 1px var(--om-accent);
+}
+
+#trademc-buyform .trademc-buyform-select select option {
+    background: #000;
+    color: #fff;
+}
+
+#trademc-buyform .trademc-buyform-button {
+    border-radius: 0.45rem;
+    box-shadow: none;
+    color: var(--om-accent-dark);
+    font-weight: 600;
+    background-color: var(--om-accent-semi-transparent-l);
+    transition: 0.1s;
+    width: 100%;
+}
+
+#trademc-buyform .trademc-buyform-button:hover {
+    background-color: var(--om-accent-semi-transparent-m);
+}
