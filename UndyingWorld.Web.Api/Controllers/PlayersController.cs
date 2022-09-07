@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using UndyingWorld.Web.Models;
 using UndyingWorld.Web.Services.Data;
-using UndyingWorld.Web.Services.Impl.Data;
 
 namespace UndyingWorld.Web.Api.Controllers
 {
@@ -22,8 +19,8 @@ namespace UndyingWorld.Web.Api.Controllers
         [HttpGet("search")]
         public ActionResult<List<SearchPlayer>> Get([FromQuery] string query = null, [FromQuery] int count = 25, [FromQuery] int offset = 0)
         {
-            if(query.Length < 3)
-                return BadRequest(new ErrorMessage("Длина поискового запроса должна быть больше 3 символов в длиу."));
+            if(query != null && query.Length < 3)
+                return BadRequest(new ErrorMessage("Длина поискового запроса должна быть больше 3 символов."));
 
             if (count < 1 || count > 50)
                 return BadRequest(new ErrorMessage("Количество элементов должно быть в диапазоне между 1 и 50."));

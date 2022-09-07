@@ -13,7 +13,8 @@ public class LogMiddleware
 
     public async Task InvokeAsync(HttpContext httpContext)
     {
-        _logger.LogInformation($"{httpContext.Request.Headers["X-Forwarded-For"]} -> {httpContext.Request.Path}");
+        string user = httpContext.User.Identity.IsAuthenticated ? httpContext.User.Identity.Name + " " : "";
+        _logger.LogInformation($"{httpContext.Request.Headers["X-Forwarded-For"]} {user}-> {httpContext.Request.Path}");
         await this._next(httpContext);
     }
 }

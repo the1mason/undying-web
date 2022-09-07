@@ -101,12 +101,11 @@ public class Program
         
         app.UseRouting();
 
-        app.UseLogMiddleware();
-
         app.UseAuthentication();
 
         app.UseAuthorization();
 
+        app.UseLogMiddleware();
 
         app.UseEndpoints(endpoints => {
             endpoints.MapControllers();

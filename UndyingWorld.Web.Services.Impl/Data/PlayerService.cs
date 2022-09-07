@@ -68,6 +68,7 @@ namespace UndyingWorld.Web.Services.Impl.Data
                              PrimaryGroup = x.PrimaryGroup,
                              Nickname = x.Username
                          })
+                         .OrderBy(x => x.Nickname)
                          .Skip(offset)
                          .Take(count)
                          .ToList();
@@ -78,6 +79,7 @@ namespace UndyingWorld.Web.Services.Impl.Data
                             PrimaryGroup = x.PrimaryGroup,
                             Nickname = x.Username
                         })
+                        .OrderBy(x => x.Nickname)
                         .Skip(offset)
                         .Take(count)
                         .ToList();
